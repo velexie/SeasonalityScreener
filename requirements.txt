@@ -2,6 +2,7 @@ dash==2.7.0
 numpy
 pandas
 scikit_learn
+openpyxl
 plotly
 dash_bootstrap_components
 gunicorn

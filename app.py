@@ -5,6 +5,7 @@ import dash_bootstrap_components as dbc
 from dash.dependencies import Input, Output
 import pandas as pd
 import plotly.io as pio
+import openpyxl
 
 #%%
 print(f"Dash version: {dash.__version__}")

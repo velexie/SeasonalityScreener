@@ -22,7 +22,7 @@ data_path = r"Seasonality Screener 241014.xlsx"
 df = pd.read_excel(data_path)
 
 # Initialize the app with LUX theme
-app = dash.Dash(__name__, external_stylesheets=[dbs.LUX])
+app = dash.Dash(__name__, external_stylesheets=[dbs.LUX], pages_folder="")
 server = app.server
 
 # App layout
@@ -96,48 +96,6 @@ def update_table(selected_types, selected_names):
     if selected_names:
         filtered_df = filtered_df[filtered_df['Name'].isin(selected_names)]
     return filtered_df.to_dict('records')
-
-if __name__ == "__main__":
-    app.run_server(debug=False)
-
-
-app = dash.Dash(__name__, use_pages=True, external_stylesheets=[dbc.themes.LUX])
-server = app.server
-
-sidebar = dbc.Nav(
-            [
-                dbc.NavLink(
-                    [
-                        html.Div(page["name"], className="ms-2"),
-                    ],
-                    href=page["path"],
-                    active="exact",
-                )
-                for page in dash.page_registry.values()
-            ],
-            vertical=True,
-            pills=True
-)
-
-app.layout = dbc.Container([
-    
-    html.Hr(),
-
-    dbc.Row(
-        [
-            dbc.Col(
-                [
-                    sidebar
-                ], xs=4, sm=4, md=2, lg=2, xl=2, xxl=2),
-
-            dbc.Col(
-                [
-                    dash.page_container
-                ], xs=8, sm=8, md=10, lg=10, xl=10, xxl=10)
-        ]
-    )
-], fluid=True)
-
 
 if __name__ == "__main__":
     app.run_server(debug=False)

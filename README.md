@@ -1,0 +1,2 @@
+# SeasonalityScreener
+Seasonality screener 

@@ -17,7 +17,7 @@ dbs = dbc.themes
 pio.templates.default = "plotly_white"
 
 # Load data
-data_path = r"D:\OneDrive - Conda Capital Pte Ltd\Seasonality DB\Seasonality Screener 241014.xlsx"
+data_path = r"Seasonality Screener 241014.xlsx"
 df = pd.read_excel(data_path)
 
 # Initialize the app with LUX theme

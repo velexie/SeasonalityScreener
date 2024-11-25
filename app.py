@@ -22,15 +22,16 @@ data_path = r"Seasonality Screener 241014.xlsx"
 df = pd.read_excel(data_path)
 
 # Initialize the app with LUX theme
-app = dash.Dash(__name__, external_stylesheets=[dbs.LUX], pages_folder="")
+app = dash.Dash(__name__, external_stylesheets=[dbs.LUX], pages_folder="",use_pages=False)
 server = app.server
 
 # App layout
 app.layout = html.Div([
+    
     dbc.Container([
         dbc.Row([
             dbc.Col(html.H1("Seasonality Screener Dashboard", className='text-center text-primary mb-4'), width=12)
-        ]),
+        ], className='mb-4'),
         dbc.Row([
             dbc.Col([
                 html.Label("Filter by Type"),
@@ -42,7 +43,7 @@ app.layout = html.Div([
                     value=None,
                     multi=True
                 ),
-            ], width=4),
+            ], width=4, className='mb-4'),
             dbc.Col([
                 html.Label("Filter by Name"),
                 dcc.Dropdown(
@@ -53,21 +54,21 @@ app.layout = html.Div([
                     value=None,
                     multi=True
                 ),
-            ], width=4)
+            ], width=4, className='mb-4')
         ]),
         dbc.Row([
             dbc.Col([
                 dash_table.DataTable(
                     id='data-table',
                     columns=[
-                        {'name': i, 'id': i} for i in df.columns
+                        {'name': i, 'id': i, 'deletable': False, 'selectable': True, 'sortable': True} for i in df.columns
                     ],
                     data=df.to_dict('records'),
                     style_table={
                         'height': '400px',
                         'overflowY': 'auto'
                     },
-                    page_action='none',
+                    #page_action='none',
                     style_cell={
                         'textAlign': 'left',
                         'padding': '10px',
